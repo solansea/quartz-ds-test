@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Неистовый (Fury) - WIP</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Quartz 4"/><meta property="og:title" content="Неистовый (Fury) - WIP"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Неистовый (Fury) - WIP"/><meta name="twitter:description" content="Fury You do not temper the heat of battle within you."/><meta property="og:description" content="Fury You do not temper the heat of battle within you."/><meta property="og:image:alt" content="Fury You do not temper the heat of battle within you."/><meta property="twitter:domain" content="quartz.jzhao.xyz"/><meta property="og:url" content="https://quartz.jzhao.xyz/Классы-(Classes)/Неистовый-(Fury)---WIP"/><meta property="twitter:url" content="https://quartz.jzhao.xyz/Классы-(Classes)/Неистовый-(Fury)---WIP"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Fury You do not temper the heat of battle within you."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  padding: 2rem;
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiRDpcXE9ic2lkaWFuXFxxdWFydHpcXHF1YXJ0elxcY29tcG9uZW50c1xcc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBhZGRpbmc6IDJyZW07XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://quartz.jzhao.xyz/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://quartz.jzhao.xyz/Классы-(Classes)/Неистовый-(Fury)---WIP-og-image.webp"/><meta property="og:image:url" content="https://quartz.jzhao.xyz/Классы-(Classes)/Неистовый-(Fury)---WIP-og-image.webp"/><meta name="twitter:image" content="https://quartz.jzhao.xyz/Классы-(Classes)/Неистовый-(Fury)---WIP-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="Классы-(Classes)/Неистовый-(Fury)---WIP"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Quartz 4</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-32"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-32" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../Классы-(Classes)/">Классы (Classes)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Неистовый (Fury)   WIP</a></div></nav><h1 class="article-title">Неистовый (Fury) - WIP</h1><p show-comma="true" class="content-meta"><time datetime="2025-09-11T07:43:17.156Z">Sep 11, 2025</time><span>13 min read</span></p></div></div><article class="popover-hint"><h2 id="fury">Fury<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#fury" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>You do not temper the heat of battle within you. You unleash it! Your experience in the wild taught you the secrets of predators, and now, like the raptor, the panther, the wolf, you channel unfettered anger into martial prowess. Primordial Chaos is your ally. Let others use finesse to clean up the wreckage left in your wake.</p>
+<p><strong>As a fury, you devastate foes with overwhelming might, hurl yourself and enemies around the battlefield, and grow stronger as your ferocity increases. Nature has no concept of fairness—and neither do you.</strong></p>
+
+<blockquote>
+<p>“DEATH!”</p>
+<p><strong>Khorva</strong></p>
+</blockquote>
+<h3 id="основы">Основы<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#основы" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Стартовые характеристики</th><th>Вы начинаете с Сила 2 и Ловкость 2, и вы можете выбрать один из следующих наборов значений ваших других характеристик. <br/> 2, -1, -1<br/>или 1, 1, -1<br/>или 1, 0, 0</th></tr></thead><tbody><tr><td>Слабая мощность</td><td>Сила - 2</td></tr><tr><td>Средняя мощность</td><td>Сила - 1</td></tr><tr><td>Сильная мощность</td><td>Сила</td></tr><tr><td>Выносливость на 1-м уровне</td><td>21</td></tr><tr><td>Выносливость, получаемая на 2-м и следующих уровнях</td><td>9</td></tr><tr><td>Восстановления</td><td>10</td></tr><tr><td>Навыки</td><td>Вы получаете навык Природы. Затем выберите любые два навыка из исследовательских или скрытных навыков. (<em>Быстрая сборка</em>: Бдительность, Прыжок, Природа)</td></tr></tbody></table></div>
+<h3 id="особенности-1-го-уровня">Особенности 1-го уровня<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#особенности-1-го-уровня" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>На 1-м уровне Ярости вы получаете следующие особенности.</p>
+<h4 id="первобытный-аспект">Первобытный Аспект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#первобытный-аспект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Вы — дитя обычаев, что древнее войны, древнее цивилизации, древнее большей части мира. Вы прошли обряд инициации, открывший вам строительные блоки таймскейпа — Первобытный Хаос — и оставивший частицу этого хаоса внутри вас. Выбираете один Первобытный аспект из предложенных ниже; каждый из них даёт вам один Навык. (<em>Быстрая сборка:</em> Берсерк - Berserker.)</p>
+<ul>
+<li><strong>Берсерк (Berserker):</strong> Вы направляете свою свирепость в физическую Силу, становясь живым воплощением сил, что формируют мир. Вы получаете навык Поднятие тяжестей (Lift).</li>
+<li><strong>Разоритель (Reaver):</strong> Вы направляете свою свирепость в Интуицию и хитрость, бросая вызов порядку цивилизации. Вы получаете навык Прятаться (Hide).</li>
+<li><strong>Буревестник (Stormwight):</strong> Вы направляете свою свирепость в первобытные бури и способны принимать облик зверя или гибридную форму зверя. Вы получаете навык Выслеживание (Track).</li>
+</ul>
+<p>Ваш Первобытный аспект — это черта вашего подкласса, и выбор аспекта определяет многие особенности, которые вы получите на новых уровнях.</p>
+<h4 id="свирепость">Свирепость<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#свирепость" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>В разгар битвы ваша решимость и ярость нарастают, подпитывая Героический Ресурс под названием <strong>Свирепость</strong>.</p>
+<blockquote>
+<p><strong>Где мои Манёвры?</strong></p>
+<p>Поскольку большинство других классов получает уникальный Манёвр, вы можете спросить: «А где особый манёвр для Неистового?» Ответ в том, что классу он просто не нужен, ведь чаще всего воображение рисует образ Неистового, который использует <strong>Манёвр Захват (Grab)</strong> или <strong>Манёвр Отталкивание (Knockback)</strong> в бою. Неистовый действительно великолепно владеет этими манёврами, поэтому нет смысла давать вам ещё один вариант, который вы будете использовать редко или вовсе никогда.</p>
+</blockquote>
+<h6 id="таблица-развития-неистового">Таблица развития Неистового<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-развития-неистового" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Level</th><th>Features</th><th>Abilities</th><th>Aspect Abilities</th></tr></thead><tbody><tr><td>1st</td><td>Primordial Aspect, Ferocity, Growing Ferocity, Aspect Features, Aspect Triggered Action, Mighty Leaps, Fury Abilities</td><td>Signature, 3, 5</td><td>-</td></tr><tr><td>2nd</td><td>Perk, Aspect Feature, Aspect Ability</td><td>Signature, 3, 5</td><td>5</td></tr><tr><td>3rd</td><td>Aspect Feature, 7-Ferocity Ability</td><td>Signature, 3, 5, 7</td><td>5</td></tr><tr><td>4th</td><td>Characteristic Increase, Damaging Ferocity, Growing Ferocity Improvement, Perk, Primordial Attunement, Primordial Strike, Skill</td><td>Signature, 3, 5, 7</td><td>5</td></tr><tr><td>5th</td><td>Aspect Feature, 9-Ferocity Ability</td><td>Signature, 3, 5, 7, 9</td><td>5</td></tr><tr><td>6th</td><td>Marauder of the Primordial Chaos, Perk, Aspect Ability</td><td>Signature, 3, 5, 7, 9</td><td>5, 9</td></tr><tr><td>7th</td><td>Characteristic Increase, Elemental Form, Greater Ferocity, Growing Ferocity Improvement, Skill</td><td>Signature, 3, 5, 7, 9</td><td>5, 9</td></tr><tr><td>8th</td><td>Perk, Aspect Feature, 11-Ferocity Ability</td><td>Signature, 3, 5, 7, 9, 11</td><td>5, 9</td></tr><tr><td>9th</td><td>Harbinger of the Primordial Chaos, Aspect Ability</td><td>Signature, 3, 5, 7, 9, 11</td><td>5, 9, 11</td></tr><tr><td>10th</td><td>Chaos Incarnate, Characteristic Increase, Growing Ferocity Improvement, Perk, Primordial Ferocity, Primordial Power, Skill</td><td>Signature, 3, 5, 7, 9, 11</td><td>5, 9, 11</td></tr></tbody></table></div>
+<h5 id="свирепость-в-бою">Свирепость в бою<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#свирепость-в-бою" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>В начале боевой сцены или иной напряжённой ситуации, ведущейся в раундах боя (по решению Режиссёра), вы получаете количество <strong>Свирепости</strong>, равное числу ваших <strong>Побед</strong>. В начале каждого вашего хода в бою вы получаете <strong>1d3 Свирепости</strong>.</p>
+<p>Кроме того, <strong>первый раз за раунд боя</strong>, когда вы получаете урон, вы получаете <strong>1 Свирепость</strong>. Первый раз за сцену, когда вы становитесь <strong>Вымотанным</strong> или начинаете <strong>умирать</strong>, вы получаете <strong>1d3 Свирепости</strong>.</p>
+<p>Вы теряете всю оставшуюся <strong>Свирепость</strong> в конце сцены.</p>
+<h5 id="свирепость-вне-боя">Свирепость вне боя<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#свирепость-вне-боя" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Хотя вне боя вы не можете получать <strong>Свирепость</strong>, вы можете использовать свои <strong>Героические способности</strong> и эффекты, требующие Свирепости, не тратя её. Каждый раз, когда вы используете вне боя способность или эффект, который требует Свирепости, вы не можете использовать эту же способность или эффект снова вне боя, пока не получите хотя бы одну <strong>Победу</strong> или не завершите <strong>Отдых</strong>.</p>
+<p>Если вы используете вне боя способность, которая позволяет тратить неограниченную Свирепость на эффект (например, <em>До Последнего Вздоха</em> — <em>To the Uttermost End</em>), вы используете её так, словно потратили количество Свирепости, равное числу ваших <strong>Побед</strong>.</p>
+<h4 id="растущая-свирепость">Растущая Свирепость<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#растущая-свирепость" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Вы получаете определённые преимущества в бою в зависимости от того, сколько у вас <strong>Свирепости</strong> (см. Особенности Аспекта 1-го уровня). Эти преимущества длятся до конца вашего хода, даже если в течение хода вы потратите Свирепость и утратите доступ к этим преимуществам.</p>
+<p>Некоторые эффекты <strong>Растущей Свирепости</strong> становятся доступны только начиная с определённого уровня; минимальный уровень указан в соответствующих таблицах в этом разделе.</p>
+<h6 id="таблица-растущей-свирепости--берсерк">Таблица растущей свирепости — Берсерк<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-растущей-свирепости--берсерк" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Свирепость</th><th>Преимущество</th></tr></thead><tbody><tr><td>2</td><td>Каждый раз, когда вы используете манёвр <strong>Отбрасывание</strong> (Knockback), дистанция принудительного перемещения увеличивается на величину, равную вашему <strong>Силе</strong>.</td></tr><tr><td>4</td><td>Первый раз за ход, когда вы толкаете существо, вы получаете <strong>1 Всплеск</strong>.</td></tr><tr><td>6</td><td>Вы получаете <strong>Преимущество</strong> на проверки <strong>Силы</strong> и при использовании манёвра <strong>Отбрасывание</strong> (Knockback).</td></tr><tr><td>8 (4-й уровень)</td><td>Первый раз за ход, когда вы толкаете существо, вы получаете <strong>2 Всплеска</strong>.</td></tr><tr><td>10 (7-й уровень)</td><td>Вы получаете <strong>Двойное Преимущество</strong> на проверки <strong>Силы</strong> и при использовании манёвра <strong>Отбрасывание</strong> (Knockback).</td></tr><tr><td>12 (10-й уровень)</td><td>Каждый раз, когда вы используете <strong>Героическую способность</strong>, вы получаете <strong>10 временной Выносливости</strong>. Кроме того, всякий раз, когда вы совершаете Бросок Мощности, налагающий принудительное перемещение на цель, дистанция перемещения увеличивается на величину, равную вашей <strong>Силе</strong>.</td></tr></tbody></table></div>
+<h6 id="таблица-pастущей-cвирепости--разоритель">Таблица pастущей cвирепости — Разоритель<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-pастущей-cвирепости--разоритель" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Свирепость</th><th>Преимущество</th></tr></thead><tbody><tr><td>2</td><td>Каждый раз, когда вы используете манёвр <strong>Отбрасывание</strong> (Knockback), дистанция принудительного перемещения увеличивается на величину, равную вашей <strong>Ловкости</strong>.</td></tr><tr><td>4</td><td>Первый раз за ход, когда вы сдвигаете (slide) существо, вы получаете <strong>1 Всплеск</strong>.</td></tr><tr><td>6</td><td>Вы получаете <strong>Преимущество</strong> на проверки <strong>Ловкости</strong> и при использовании манёвра <strong>Отбрасывание</strong> (Knockback).</td></tr><tr><td>8 (4-й уровень)</td><td>Первый раз за ход, когда вы сдвигаете существо, вы получаете <strong>2 Рывка</strong>.</td></tr><tr><td>10 (7-й уровень)</td><td>Вы получаете <strong>Двойное Преимущество</strong> на проверки <strong>Ловкости</strong> и при использовании манёвра <strong>Отбрасывание</strong>.</td></tr><tr><td>12 (10-й уровень)</td><td>Каждый раз, когда вы используете <strong>Героическую способность</strong>, вы получаете <strong>10 временной Выносливости</strong>. Кроме того, всякий раз, когда вы совершаете Бросок Мощности, налагающий принудительное перемещение, его дистанция увеличивается на величину, равную вашей <strong>Ловкости</strong>.</td></tr></tbody></table></div>
+<h4 id="особенности-аспекта-1-го-уровня">Особенности Аспекта 1-го уровня<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#особенности-аспекта-1-го-уровня" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш первобытный аспект даёт вам две особенности, как показано в таблице <strong>особенностей Аспекта 1-го уровня</strong>.</p>
+<h6 id="таблица-особенностей-аспекта-1-го-уровня">Таблица особенностей Аспекта 1-го уровня<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-особенностей-аспекта-1-го-уровня" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Аспект</th><th>Особенность</th></tr></thead><tbody><tr><td>Берсерк</td><td>Комплект (Kit), Первобытная Сила (Primordial Strength)</td></tr><tr><td>Разоритель</td><td>Комплект (Kit), Первобытная Хитрость (Primordial Cunning)</td></tr><tr><td>Буревестник</td><td>Облик Зверя (Beast Shape), Неумолимый Охотник (Relentless Hunter)</td></tr></tbody></table></div>
+<h5 id="облик-зверя">Облик Зверя<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#облик-зверя" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы можете использовать и получать преимущества набора <strong>Буревестника</strong> (см. Наборы Буревестника). Ваш набор Буревестника даёт вам ряд преимуществ, включая преимущества, связанные с вашей особенностью <strong>Растущая свирепость</strong>.</p>
+<h5 id="комплект">Комплект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#комплект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы можете использовать и получать преимущества <strong>комплекта</strong>. См. Главу 6: Комплекты для получения дополнительной информации. (<em>Быстрая сборка:</em> Пантера - Panther.)</p>
+<h5 id="первобытная-хитрость">Первобытная Хитрость<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#первобытная-хитрость" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы никогда не оказываетесь в состоянии <strong>Захвачен врасплох (Suprised)</strong>. Кроме того, всякий раз, когда вы собираетесь толкнуть цель с помощью принудительного перемещения, вы можете вместо этого <strong>сдвинуть (slide) её</strong>.</p>
+<p>По мере роста вашей <strong>Свирепости</strong> вы получаете преимущества, указанные в таблице <strong>Растущей cвирепости — Разоритель</strong>. Преимущества суммируются, за исключением случаев, когда улучшенное преимущество заменяет более слабое.</p>
+<h5 id="первобытная-сила">Первобытная Сила<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#первобытная-сила" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Всякий раз, когда вы наносите урон объекту с помощью <strong>Удара оружием</strong>, удар наносит дополнительный урон, равный вашему показателю <strong>Силы</strong>. Кроме того, всякий раз, когда вы толкаете другое существо в объект, это существо получает дополнительный урон, равный вашему показателю <strong>Силы</strong>.</p>
+<p>По мере роста вашей <strong>Свирепости</strong> вы получаете преимущества, указанные в таблице <strong>Растущей свирепости — Берсерк</strong>. Преимущества суммируются, за исключением случаев, когда улучшенное преимущество заменяет более слабое.</p>
+<h5 id="неумолимый-охотник">Неумолимый Охотник<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#неумолимый-охотник" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы получаете <strong>Преимущество</strong> на проверки с использованием навыка <strong>Выслеживание</strong>.</p>
+<h4 id="реакция-аспекта-aspect-triggered-action">Реакция Аспекта (Aspect Triggered Action)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#реакция-аспекта-aspect-triggered-action" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш <strong>Первобытный аспект</strong> даёт вам <strong>Реакцию</strong>, как показано в <strong>таблице реакций аспекта</strong>.</p>
+<h6 id="таблица-реакций-аспекта">Таблица реакций аспекта<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-реакций-аспекта" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Аспект</th><th>Реакция</th></tr></thead><tbody><tr><td>Берсерк</td><td>Линии Силы (Lines of Force)</td></tr><tr><td>Разоритель</td><td>Неземные Рефлексы (Unearthly Reflexes)</td></tr><tr><td>Буревестник</td><td>Яростное Преображение (Furious Change)</td></tr></tbody></table></div>
+<h6 id="яростное-преображение-furious-change">Яростное Преображение (Furious Change)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#яростное-преображение-furious-change" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Яростное Преображение (Furious Change)</span></span>
+<span data-line><span>flavor: В гневе вы возвращаетесь к более звериной форме.</span></span>
+<span data-line><span>keywords: __</span></span>
+<span data-line><span>type: Реакция</span></span>
+<span data-line><span>distance: На себя</span></span>
+<span data-line><span>target: На себя</span></span>
+<span data-line><span>trigger: Вы теряете Выносливость и не умираете</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Эффект: Вы получаете временную Выносливость, равную вашему показателю Силы, и можете принять форму животного или гибридную форму.</span></span>
+<span data-line><span>- Потратить 1 Свирепость: Если вы не умираете, вы можете потратить Восстановление.</span></span>
+<span data-line> </span></code></pre></figure>
+<h6 id="линии-силы-lines-of-force">Линии Силы (Lines of Force)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#линии-силы-lines-of-force" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Линии Силы (Lines of Force)</span></span>
+<span data-line><span>flavor: Вы перенаправляете энергию движения.</span></span>
+<span data-line><span>keywords: Магия, Ближнее</span></span>
+<span data-line><span>type: Реакция</span></span>
+<span data-line><span>distance: Ближний 1</span></span>
+<span data-line><span>target: На себя или одно существо</span></span>
+<span data-line><span>trigger: Цель подвергается принудительному перемещению</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Эффект: Вы можете выбрать новую цель того же размера или меньше в пределах дистанции для принудительного перемещения вместо исходной цели. Вы становитесь источником перемещения, определяете новое местоположение цели и можете толкнуть цель вместо исходного типа принудительного перемещения (притягивания или сдвига). Дистанция принудительного перемещения увеличивается на величину вашего показателя Силы.</span></span>
+<span data-line><span>- Потратить 1 Свирепость: Дистанция принудительного перемещения увеличивается на величину, равную удвоенному показателю вашей Силы.</span></span>
+<span data-line> </span></code></pre></figure>
+<h6 id="неземные-рефлексы-unearthly-reflexes">Неземные Рефлексы (Unearthly Reflexes)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#неземные-рефлексы-unearthly-reflexes" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Неземные Рефлексы (Unearthly Reflexes)</span></span>
+<span data-line><span>flavor: Вы столь же неуловимы, как колибри.</span></span>
+<span data-line><span>keywords: __</span></span>
+<span data-line><span>type: Реакция</span></span>
+<span data-line><span>distance: На себя</span></span>
+<span data-line><span>target: На себя</span></span>
+<span data-line><span>trigger: Вы получаете урон</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Эффект: Вы получаете половину урона от срабатываемого эффекта и можете сдвинуться на число клеток, равное вашей Ловкости.</span></span>
+<span data-line><span>- Потратить 1 Свирепость: Если у урона есть эффекты Мощности, их значение уменьшается на 1 для вас.</span></span>
+<span data-line> </span></code></pre></figure>
+<h4 id="mighty-leaps">Mighty Leaps<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#mighty-leaps" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>You can’t obtain lower than a tier 2 outcome on any Might test made to jump (see Movement Types in Chapter 10: Combat).</p>
+<h4 id="fury-abilities">Fury Abilities<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#fury-abilities" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>You specialize in dealing massive damage on the battlefield, and have mastered unique martial abilities that allow you to strike hard and keep moving.</p>
+<h5 id="signature-ability">Signature Ability<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#signature-ability" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Choose one signature ability from the following options. Signature abilities can be used at will. (<em>Quick Build:</em> To the Death!)</p>
+<h6 id="brutal-slam">Brutal Slam<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#brutal-slam" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>The heavy impact of your weapon attacks drives your foes ever back.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature or object</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 3 + M damage; push 1</li>
+<li><strong>12-16:</strong> 6 + M damage; push 2</li>
+<li><strong>17+:</strong> 9 + M damage; push 4</li>
+</ul>
+<h6 id="hit-and-run">Hit and Run<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#hit-and-run" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>Staying in constant motion helps you slip out of reach after a brutal assault.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature or object</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 2 + M damage</li>
+<li><strong>12-16:</strong> 5 + M damage</li>
+<li><strong>17+:</strong> 7 + M damage; A &lt; STRONG, slowed (save ends)</li>
+</ul>
+<p><strong>Effect:</strong> You can shift 1 square.</p>
+<h6 id="impaled">Impaled!<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#impaled" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>You skewer your enemy like a boar upon a spit.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature of your size or smaller</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 2 + M damage; M &lt; WEAK, grabbed</li>
+<li><strong>12-16:</strong> 5 + M damage; M &lt; AVERAGE, grabbed</li>
+<li><strong>17+:</strong> 7 + M damage; M &lt; STRONG, grabbed</li>
+</ul>
+<h6 id="to-the-death">To the Death!<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#to-the-death" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>Your reckless assault leaves you tactically vulnerable.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature or object</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 3 + M damage</li>
+<li><strong>12-16:</strong> 6 + M damage</li>
+<li><strong>17+:</strong> 9 + M damage</li>
+</ul>
+<p><strong>Effect:</strong> You gain 2 surges, and the target can make an opportunity attack against you as a free triggered action.</p>
+<h5 id="heroic-abilities">Heroic Abilities<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#heroic-abilities" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>You fight with an array of heroic abilities, all of which cost ferocity to fuel them.</p>
+<h6 id="3-ferocity-ability">3-Ferocity Ability<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-ferocity-ability" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p>Choose one heroic ability from the following options, each of which costs 3 ferocity to use. (<em>Quick Build:</em> Back!)</p>
+<h6 id="back-3-ferocity">Back! (3 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#back-3-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>You hew about you with your mighty weapon, hurling enemies backward.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Area, Melee, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 1 burst</strong></td><td style="text-align:right;"><strong>🎯 Each enemy in the area</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 5 damage</li>
+<li><strong>12-16:</strong> 8 damage; push 1</li>
+<li><strong>17+:</strong> 11 damage; push 3</li>
+</ul>
+<h6 id="out-of-the-way-3-ferocity">Out of the Way! (3 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#out-of-the-way-3-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>Your enemies will clear your path—whether they want to or not.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 3 + M damage; slide 2</li>
+<li><strong>12-16:</strong> 5 + M damage; slide 3</li>
+<li><strong>17+:</strong> 8 + M damage; slide 5</li>
+</ul>
+<p><strong>Effect:</strong> When you slide the target, you can move into any square they leave. If you take damage from an opportunity attack by moving this way, the target takes the same damage.</p>
+<h6 id="tide-of-death-3-ferocity">Tide of Death (3 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#tide-of-death-3-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>Teach them the folly of lining up for you.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Self; see below</strong></td><td style="text-align:right;"><strong>🎯 Self</strong></td></tr></tbody></table></div>
+<p><strong>Effect:</strong> You move up to your speed in a straight line, and enemy squares are not difficult terrain for this movement. You can end this movement in a creature’s space and move them to an adjacent unoccupied space. You make one power roll that targets each enemy whose space you move through.</p>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 2 damage</li>
+<li><strong>12-16:</strong> 3 damage</li>
+<li><strong>17+:</strong> 5 damage</li>
+</ul>
+<p><strong>Effect:</strong> The last target you damage takes extra damage equal to your Might score for each opportunity attack you trigger during your move.</p>
+<h6 id="your-entrails-are-your-extrails-3-ferocity">Your Entrails Are Your Extrails! (3 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#your-entrails-are-your-extrails-3-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>Hard for them to fight when they’re busy holding in their giblets.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature or object</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 3 + M damage; M &lt; WEAK, bleeding (save ends)</li>
+<li><strong>12-16:</strong> 5 + M damage; M &lt; AVERAGE, bleeding (save ends)</li>
+<li><strong>17+:</strong> 8 + M damage; M &lt; STRONG, bleeding (save ends)</li>
+</ul>
+<p><strong>Effect:</strong> While bleeding this way, the target takes damage equal to your Might score at the end of each of your turns.</p>
+<h6 id="5-ferocity-ability">5-Ferocity Ability<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-ferocity-ability" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p>Choose one heroic ability from the following options, each of which costs 5 ferocity to use. (<em>Quick Build:</em> Blood for Blood!)</p>
+<h6 id="blood-for-blood-5-ferocity">Blood for Blood! (5 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#blood-for-blood-5-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>See how well they fight after you’ve bled them dry.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature or object</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 4 + M damage; M &lt; WEAK, bleeding and weakened (save ends)</li>
+<li><strong>12-16:</strong> 6 + M damage; M &lt; AVERAGE, bleeding and weakened (save ends)</li>
+<li><strong>17+:</strong> 10 + M damage; M &lt; STRONG, bleeding and weakened (save ends)</li>
+</ul>
+<p><strong>Effect:</strong> You can deal 1d6 damage to yourself to deal an extra 1d6 damage to the target.</p>
+<h6 id="make-peace-with-your-god-5-ferocity">Make Peace With Your God! (5 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#make-peace-with-your-god-5-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>Anger is your energy.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>-</strong></th><th style="text-align:right;"><strong>Free maneuver</strong></th></tr></thead><tbody><tr><td><strong>📏 Self</strong></td><td style="text-align:right;"><strong>🎯 Self</strong></td></tr></tbody></table></div>
+<p><strong>Effect:</strong> You gain 1 surge, and the next ability roll you make this turn automatically obtains a tier 3 outcome.</p>
+<h6 id="thunder-roar-5-ferocity">Thunder Roar (5 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#thunder-roar-5-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>You unleash a howl that hurls your enemies back.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Area, Melee, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 5 x 1 line within 1</strong></td><td style="text-align:right;"><strong>🎯 Each enemy in the area</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 6 damage; push 2</li>
+<li><strong>12-16:</strong> 9 damage; push 4</li>
+<li><strong>17+:</strong> 13 damage; push 6</li>
+</ul>
+<p><strong>Effect:</strong> The targets are force moved one at a time, starting with the target nearest to you, and can be pushed into other targets in the same line.</p>
+<h6 id="to-the-uttermost-end-5-ferocity">To the Uttermost End (5 Ferocity)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#to-the-uttermost-end-5-ferocity" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h6>
+<p><em>You gut your life force to ensure a foe’s demise.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><strong>Melee, Strike, Weapon</strong></th><th style="text-align:right;"><strong>Main action</strong></th></tr></thead><tbody><tr><td><strong>📏 Melee 1</strong></td><td style="text-align:right;"><strong>🎯 One creature</strong></td></tr></tbody></table></div>
+<p><strong>Power Roll + Might:</strong></p>
+<ul>
+<li><strong>≤11:</strong> 7 + M damage</li>
+<li><strong>12-16:</strong> 11 + M damage</li>
+<li><strong>17+:</strong> 16 + M damage</li>
+</ul>
+<p><strong>Spend 1+ Ferocity:</strong> While you are winded, this ability deals an extra 1d6 damage for each ferocity spent. While you are dying, it deals an extra 1d10 damage for each ferocity spent. In either case, you lose 1d6 Stamina after making this strike.</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-1" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#fury" data-for="fury">Fury</a></li><li class="depth-1"><a href="#основы" data-for="основы">Основы</a></li><li class="depth-1"><a href="#особенности-1-го-уровня" data-for="особенности-1-го-уровня">Особенности 1-го уровня</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.1</a> © 2025</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module">function f(i,e){if(!i)return;function r(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function t(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}i?.addEventListener("click",r),window.addCleanup(()=>i?.removeEventListener("click",r)),document.addEventListener("keydown",t),window.addCleanup(()=>document.removeEventListener("keydown",t))}function y(i){for(;i.firstChild;)i.removeChild(i.firstChild)}var h=class{constructor(e,r){this.container=e;this.content=r;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),r=this.onMouseMove.bind(this),t=this.onMouseUp.bind(this),o=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",r),document.addEventListener("mouseup",t),window.addEventListener("resize",o),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",r),()=>document.removeEventListener("mouseup",t),()=>window.removeEventListener("resize",o))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let r=this.createButton("+",()=>this.zoom(.1)),t=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(t),e.appendChild(o),e.appendChild(r),this.container.appendChild(e)}createButton(e,r){let t=document.createElement("button");return t.textContent=e,t.className="mermaid-control-button",t.addEventListener("click",r),window.addCleanup(()=>t.removeEventListener("click",r)),t}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}zoom(e){let r=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),t=this.content.getBoundingClientRect(),o=t.width/2,n=t.height/2,c=r-this.scale;this.currentPan.x-=o*c,this.currentPan.y-=n*c,this.scale=r,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){this.scale=1;let e=this.content.querySelector("svg");this.currentPan={x:e.getBoundingClientRect().width/2,y:e.getBoundingClientRect().height/2},this.updateTransform()}},C=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],E;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;E||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let r=E.default,t=new WeakMap;for(let n of e)t.set(n,n.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let a=t.get(s);a&&(s.innerHTML=a)}let n=C.reduce((s,a)=>(s[a]=window.getComputedStyle(document.documentElement).getPropertyValue(a),s),{}),c=document.documentElement.getAttribute("saved-theme")==="dark";r.initialize({startOnLoad:!1,securityLevel:"loose",theme:c?"dark":"base",themeVariables:{fontFamily:n["--codeFont"],primaryColor:n["--light"],primaryTextColor:n["--darkgray"],primaryBorderColor:n["--tertiary"],lineColor:n["--darkgray"],secondaryColor:n["--secondary"],tertiaryColor:n["--tertiary"],clusterBkg:n["--light"],edgeLabelBackground:n["--highlight"]}}),await r.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let n=0;n<e.length;n++){let v=function(){let g=l.querySelector("#mermaid-space"),m=l.querySelector(".mermaid-content");if(!m)return;y(m);let w=c.querySelector("svg").cloneNode(!0);m.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new h(g,m)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},c=e[n],s=c.parentElement,a=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(a),L=a.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),f(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>

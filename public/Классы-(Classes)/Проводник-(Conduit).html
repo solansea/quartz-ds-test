@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Проводник (Conduit)</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Quartz 4"/><meta property="og:title" content="Проводник (Conduit)"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Проводник (Conduit)"/><meta name="twitter:description" content="Сила богов течёт через вас! Будучи сосудом божественной энергии, вы не просто поддерживаете союзников в бою."/><meta property="og:description" content="Сила богов течёт через вас! Будучи сосудом божественной энергии, вы не просто поддерживаете союзников в бою."/><meta property="og:image:alt" content="Сила богов течёт через вас! Будучи сосудом божественной энергии, вы не просто поддерживаете союзников в бою."/><meta property="twitter:domain" content="quartz.jzhao.xyz"/><meta property="og:url" content="https://quartz.jzhao.xyz/Классы-(Classes)/Проводник-(Conduit)"/><meta property="twitter:url" content="https://quartz.jzhao.xyz/Классы-(Classes)/Проводник-(Conduit)"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Сила богов течёт через вас! Будучи сосудом божественной энергии, вы не просто поддерживаете союзников в бою."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" spa-preserve/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  padding: 2rem;
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiRDpcXE9ic2lkaWFuXFxxdWFydHpcXHF1YXJ0elxcY29tcG9uZW50c1xcc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBhZGRpbmc6IDJyZW07XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://quartz.jzhao.xyz/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://quartz.jzhao.xyz/Классы-(Classes)/Проводник-(Conduit)-og-image.webp"/><meta property="og:image:url" content="https://quartz.jzhao.xyz/Классы-(Classes)/Проводник-(Conduit)-og-image.webp"/><meta name="twitter:image" content="https://quartz.jzhao.xyz/Классы-(Classes)/Проводник-(Conduit)-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="Классы-(Classes)/Проводник-(Conduit)"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Quartz 4</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-36"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-36" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../Классы-(Classes)/">Классы (Classes)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Проводник (Conduit)</a></div></nav><h1 class="article-title">Проводник (Conduit)</h1><p show-comma="true" class="content-meta"><time datetime="2025-09-12T21:39:47.098Z">Sep 12, 2025</time><span>23 min read</span></p></div></div><article class="popover-hint"><p>Сила богов течёт через вас! Будучи сосудом божественной энергии, вы не просто поддерживаете союзников в бою. Вы делаете их более эффективными, и одновременно обрушиваете божественную мощь на врагов. Хотя у божества или святого, которому вы служите, могут быть другие верующие и духовенство, вы особенные среди поклоняющихся, и вы получаете свои способности напрямую из высшего источника.</p>
+<p><strong>Как Проводник, вы исцеляете и усиливаете союзников, а также ослабляете врагов, поражая их божественной магией. Искра божественности внутри вас сияет, внушая врагам трепет и делая вас более восприимчивым и осознанным.</strong></p>
+<blockquote>
+<p>«Боги судят наши действия и наше бездействие.»<br/>
+<strong>Дазар</strong></p>
+</blockquote>
+<h2 id="основы">Основы<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#основы" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Стартовые характеристики</th><th>Вы начинаете с <strong>Интуиции</strong> 2, и вы можете выбрать один из следующих наборов значений ваших других характеристик. <br/>2, 2, −1, −1<br/>2, 1, 1, −1<br/>2, 1, 0, 0<br/>1, 1, 1, 0</th></tr></thead><tbody><tr><td>Слабая мощность</td><td>Интуиция - 2</td></tr><tr><td>Средняя мощность</td><td>Интуиция - 1</td></tr><tr><td>Cильная мощность</td><td>Интуиция</td></tr><tr><td>Выносливость на 1-м уровне</td><td>18</td></tr><tr><td>Выносливость, получаемая на 2-м и следующих уровнях</td><td>6</td></tr><tr><td>Восстановления</td><td>8</td></tr><tr><td>Навыки</td><td>Вы получаете два навыка из межличностных и энциклопедических знаний (<em>Быстрое создание:</em> Чтение личности, Религия)</td></tr></tbody></table></div>
+<h3 id="таблица-развития-проводника">Таблица развития Проводника<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-развития-проводника" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Уровень</th><th>Особенности</th><th>Способности</th><th>Способности Домена</th></tr></thead><tbody><tr><td>1-й</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#божество-и-домены" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Божество и Домены</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#почтение-piety" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Почтение</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#особенности-домена-проводника-1-го-уровня" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Особенности домена Проводника 1-го уровня</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#целительная-благодать-healing-grace" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Целительная благодать</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#луч-ярости-ray-of-wrath" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Луч Ярости</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#реакция" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Реакция</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#молитва" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Молитва</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#оберег-проводника" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Оберег Проводника</a>, <a href="../Классы-(Classes)/Проводник-(Conduit)#способности-проводника" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Способности проводника</a></td><td>Две знаковые, 3, 5</td><td>-</td></tr><tr><td>2nd</td><td>The Lists of Heaven, Perk, Domain Feature, Domain Ability</td><td>Two signature, 3, 5</td><td>5</td></tr><tr><td>3rd</td><td>Minor Miracle, 7-Piety Ability</td><td>Two signature, 3, 5, 7</td><td>5</td></tr><tr><td>4th</td><td>Blessed Domains, Characteristic Increase, Domain Feature, Perk, Skill Increase</td><td>Two signature, 3, 5, 7</td><td>5</td></tr><tr><td>5th</td><td>Domain Feature, 9-Piety Ability</td><td>Two signature, 3, 5, 7, 9</td><td>5</td></tr><tr><td>6th</td><td>Burgeoning Saint, Perk, Domain Ability</td><td>Two signature, 3, 5, 7, 9</td><td>5, 9</td></tr><tr><td>7th</td><td>Characteristic Increase, Domain Feature, Faithful’s Reward, Skill Increase</td><td>Two signature, 3, 5, 7, 9</td><td>5, 9</td></tr><tr><td>8th</td><td>Domain Feature, Perk, 11-Piety Ability</td><td>Two signature, 3, 5, 7, 9, 11</td><td>5, 9</td></tr><tr><td>9th</td><td>Domain Ability, Faith’s Sword, Ordained</td><td>Two signature, 3, 5, 7, 9, 11</td><td>5, 9, 11</td></tr><tr><td>10th</td><td>Avatar, Characteristic Increase, Divine Power, Most Pious, Perk, Skill Increase</td><td>Two signature, 3, 5, 7, 9, 11</td><td>5, 9, 11</td></tr></tbody></table></div>
+<h2 id="особенности-1-го-уровня">Особенности 1-го уровня<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#особенности-1-го-уровня" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>В качестве <strong>Проводника</strong>, вы получаете следующие <strong>Особенности</strong>.</p>
+<h3 id="божество-и-домены">Божество и Домены<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#божество-и-домены" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Выберите божество или святого, которого почитает ваш персонаж, из главы 14: <em>Боги и Религия</em>, или спросите у своего <strong>Режиссёра</strong> о божествах в мире вашей кампании. С разрешения <strong>Режиссёра</strong> вы также можете создать собственного бога и выбрать четыре <strong>Домена</strong>, которые будут частью его портфолио.</p>
+<p>После выбора божества, выберите два <strong>Домена</strong> из его портфолио. Эти два <strong>Домена</strong> составят ваш подкласс, и ваш выбор <strong>Доменов</strong> определит множество <strong>Особенностей</strong>, которые вы получите по мере повышения уровня. (<em>Быстрая сборка:</em> Адûn в качестве божества и <strong>Жизнь (Life)</strong> и <strong>Защита(Protection)</strong> в качестве <strong>Доменов</strong>.)</p>
+<h3 id="почтение-piety">Почтение (Piety)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#почтение-piety" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Ваше божество дарует вам героический ресурс под названием <strong>Почтение</strong>, позволяющий вам исцелять и усиливать союзников, а также высвобождать святую мощь на врагов.</p>
+<h4 id="почтение-в-бою">Почтение в бою<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#почтение-в-бою" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>В начале <strong>боевой сцены</strong> или другой напряжённой ситуации, ведущейся по раундам боя (по решению <strong>Режиссёра</strong>), вы получаете <strong>Почтение</strong>, равное вашим <strong>Победам</strong>. В начале каждого вашего хода в бою вы получаете 1d3 <strong>Почтения</strong>.</p>
+<p>Кроме того, вы можете получать больше <strong>Почтения</strong>, молясь богам — но остерегайтесь! Это может легко навлечь их гнев, ведь боги ненавидят, когда их раздражают. Перед тем как сделать <strong>бросок</strong> на получение <strong>Почтения</strong> в начале своего хода, вы можете помолиться (не требует <strong>действия</strong>). Если вы так поступите, ваш бросок получает следующие дополнительные эффекты:</p>
+<ul>
+<li>Если выпал 1, вы получаете 1 дополнительное <strong>Почтение</strong>, но гневите богов! Вы получаете <strong>психический урон</strong>, равный 1d6 + ваш уровень, который нельзя снизить никаким образом.</li>
+<li>Если выпал 2, вы получаете 1 дополнительное <strong>Почтение</strong>.</li>
+<li>Если выпал 3, вы получаете 2 дополнительных <strong>Почтения</strong> и можете активировать <strong>эффект домена</strong> по вашему выбору (см. ниже).</li>
+</ul>
+<p>Вы теряете все оставшееся <strong>Почтение</strong> в конце <strong>боевой сцены</strong>.</p>
+<h4 id="почтение-вне-боя">Почтение вне боя<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#почтение-вне-боя" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Хотя вы не можете получать <strong>Почтение</strong> вне боя, вы можете использовать свои <strong>героические способности</strong> и <strong>эффекты</strong>, которые требуют <strong>Почтения</strong>, не расходуя его. Каждый раз, когда вы используете <strong>способность</strong> или <strong>эффект</strong> вне боя, который требует <strong>Почтения</strong>, вы не можете использовать эту же <strong>способность</strong> или <strong>эффект</strong> вне боя снова, пока не заработаете 1 или более <strong>Побед</strong> или не завершите <strong>Отдых</strong>.</p>
+<p>Когда вы используете <strong>способность</strong> вне боя, которая позволяет тратить неограниченное количество <strong>Почтения</strong> на её <strong>эффект</strong> (например, <em>Целительная Благодать</em> - Healing Grace), вы можете использовать её так, как если бы потратили количество <strong>Почтения</strong>, равное вашим <strong>Победам</strong>.</p>
+<h4 id="почтение-домена-и-его-эффекты">Почтение Домена и его Эффекты<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#почтение-домена-и-его-эффекты" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш выбор <strong>Доменов</strong> предоставляет вам два дополнительных способа получать <strong>Почтение</strong> во время боя, срабатывающих при определённых событиях. Иногда одно событие может активировать оба ваших <strong>эффекта доменов</strong>. Например, <strong>Домен Солнца</strong> даёт <strong>Почтение</strong>, когда находящееся рядом существо получает урон от огня или святой урон, тогда как <strong>Домен Войны</strong> даёт <strong>Почтение</strong>, когда находящееся рядом существо получает урон, равный 10 + ваш уровень или выше. Если у вас есть оба этих <strong>Домена</strong>, и находящееся рядом существо получает соответствующее количество урона от огня, вы получаете <strong>Почтение</strong> от обоих своих <strong>Доменов</strong>.</p>
+<p>Кроме того, каждый раз, когда вы активируете <strong>эффект домена</strong>, молясь о <strong>Почтении</strong>, вы можете выбрать один из своих <strong>Доменов</strong>, и эффект молитвы этого <strong>Домена</strong> срабатывает немедленно.</p>
+<h5 id="домен-творения-почтение-и-эффект">Домен Творения: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-творения-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда существо в пределах 10 клеток использует <strong>способность по области</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Вы призываете силы творения и создаёте каменную стену в пределах 10 клеток, размер которой равен 5 + ваш <strong>показатель Интуиции</strong>. Стена существует до конца <strong>боевой сцены</strong>.</li>
+</ul>
+<h5 id="домен-смерти-почтение-и-эффект">Домен Смерти: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-смерти-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда существо (не миньон) в пределах 10 клеток снижается до 0 <strong>Выносливости</strong>, или когда соло-противник в пределах 10 клеток становится **вымотанным.</li>
+<li><strong>Эффект молитвы:</strong> Вы насылаете смертельное проклятие на двух врагов в пределах 10 клеток. Каждый цель получает <strong>урон порчей</strong>, равный двойному значению вашего <strong>показателя Интуиции</strong>.</li>
+<li></li>
+</ul>
+<h5 id="домен-судьбы-почтение-и-эффект">Домен Судьбы: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-судьбы-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда союзник в пределах 10 клеток получает <strong>результат 3-го ранга</strong> на <strong>Броске Могущества</strong>, или враг в пределах 10 клеток получает <strong>результат 1-го ранга</strong> на <strong>Броске Могущества</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Вы призываете силы судьбы для создания предсказуемого будущего. Выберите существо в пределах 10 клеток. Оно автоматически получает <strong>результат 1-го или 3-го ранга</strong> (на ваш выбор) на свой следующий <strong>Бросок Могущества</strong>, совершённый до конца <strong>боевой сцены</strong>.</li>
+</ul>
+<h5 id="домен-знаний-почтение-и-эффект">Домен Знаний: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-знаний-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда <strong>Режиссёр</strong> тратит <strong>Злоба</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Выберите до пяти союзников в пределах 10 клеток, либо выберите себя вместо одного из них. Каждая цель получает 1 <strong>Всплеск</strong>.</li>
+</ul>
+<h5 id="домен-жизни-почтение-и-эффект">Домен Жизни: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-жизни-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда существо в пределах 10 клеток восстанавливает <strong>Выносливость</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Выберите себя или союзника в пределах 10 клеток. Этот персонаж может потратить <strong>Восстановление</strong>, прекратить один <strong>эффект</strong>, который завершается <strong>спасброском</strong> или в конце его хода, либо встать, если он <strong>повален</strong>. Либо вы или союзник в пределах 10 клеток получаете временную <strong>Выносливость</strong>, равную двум значениям вашего <strong>показателя Интуиции</strong>.</li>
+</ul>
+<h5 id="домен-любви-почтение-и-эффект">Домен Любви: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-любви-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда вы или союзник в пределах 10 клеток используют <strong>манёвр Помочь атаковать</strong> (Aid Attack) или <strong>способность</strong>, нацеленную на союзника.</li>
+<li><strong>Эффект молитвы:</strong> Каждый союзник в пределах 10 клеток получает временную <strong>Выносливость</strong>, равную двум значениям вашего <strong>показателя Интуиции</strong>.</li>
+</ul>
+<h5 id="домен-природы-почтение-и-эффект">Домен Природы: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-природы-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда вы или существо в пределах 10 клеток получает **урон кислотой, холодом, огнём, молнией, ядом или звуком.</li>
+<li><strong>Эффект молитвы:</strong> Лозы вырываются из земли в пределах 10 клеток, опутывая количество существ, равное вашему <strong>показателю Интуиции</strong>. Вы можете <strong>сдвинуть (slide)</strong> каждое из них на количество клеток, равное вашему <strong>показателю Интуиции</strong>. Затем лозы исчезают.</li>
+</ul>
+<h5 id="домен-защиты-почтение-и-эффект">Домен Защиты: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-защиты-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда вы или союзник в пределах 10 клеток получают временную <strong>Выносливость</strong> или используют <strong>Реакцию</strong>, чтобы уменьшить входящий урон или наложить <strong>Помеху</strong>/<strong>Двойную Помеху</strong> на <strong>Бросок Могущества</strong> врага.</li>
+<li><strong>Эффект молитвы:</strong> Один союзник в пределах 10 клеток получает временную <strong>Выносливость</strong>, равную четырём значениям вашего <strong>показателя Интуиции</strong>.</li>
+</ul>
+<h5 id="домен-шторма-почтение-и-эффект">Домен Шторма: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-шторма-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда враг в пределах 10 клеток подвергается <strong>принудительному перемещению</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Каждый враг в кубе 3×3 в пределах 10 клеток получает <strong>урон молнией</strong>, равный двойному значению вашего <strong>показателя Интуиции</strong>.</li>
+</ul>
+<h5 id="домен-солнца-почтение-и-эффект">Домен Солнца: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-солнца-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда враг в пределах 10 клеток получает <strong>урон огнём или святой урон</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Один враг в пределах 10 клеток получает <strong>урон огнём</strong>, равный тройному значению вашего <strong>показателя Интуиции</strong>.</li>
+</ul>
+<h5 id="домен-обмана-почтение-и-эффект">Домен Обмана: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-обмана-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда вы или существо в пределах 10 клеток используют <strong>манёвр Помочь атаковать (Aid Attack)</strong> или <strong>Скрыться</strong>.</li>
+<li><strong>Эффект молитвы:</strong> Вы <strong>сдвигаете</strong> одно существо в пределах 10 клеток на количество клеток, равное 5 + ваш уровень <strong>Проводника</strong>.</li>
+</ul>
+<h5 id="домен-войны-почтение-и-эффект">Домен Войны: Почтение и Эффект<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#домен-войны-почтение-и-эффект" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<ul>
+<li><strong>Почтение:</strong> Вы получаете 2 <strong>Почтения</strong> в первый раз за <strong>боевую сцену</strong>, когда вы или существо в пределах 10 клеток получает урон, превышающий 10 + ваш уровень, за один ход.</li>
+<li><strong>Эффект молитвы:</strong> Выберите до трёх союзников в пределах 10 клеток, либо выберите себя вместо одного из них. Каждая цель получает 2 <strong>Всплеска</strong>.</li>
+</ul>
+<h3 id="особенности-домена-проводника-1-го-уровня">Особенности домена Проводника 1-го уровня<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#особенности-домена-проводника-1-го-уровня" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Выберите один из ваших доменов. Вы получаете <strong>особенность домена</strong> для этого домена, как показано на таблице особенностей домена Проводника 1-го уровня. Дополнительно вы получаете <strong>навык</strong> из группы навыков выбранного домена, как показано в таблице. (<em>Быстрая сборка</em>: Оживляющий Ритуал - Revitalizing Ritual и навык Лечение из домена Жизни)</p>
+<h4 id="таблица-особенностей-домена-проводника-1-го-уровня">Таблица особенностей домена Проводника 1-го уровня<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#таблица-особенностей-домена-проводника-1-го-уровня" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Домен</th><th>Особенность</th><th>Группа навыков</th></tr></thead><tbody><tr><td>Творение</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#руки-создателя-hands-of-the-maker" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Руки Создателя (Hands of the Maker)</a></td><td>Ремесленные</td></tr><tr><td>Смерть</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#шёпот-могил-grave-speech" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Шёпот Могил (Grave Speech)</a></td><td>Энциклопедические</td></tr><tr><td>Судьба</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#видения-оракула-oracular-visions" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Видения Оракула (Oracular Visions)</a></td><td>Энциклопедические</td></tr><tr><td>Знания</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#благословение-понимания-blessing-of-comprehension" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Благословение Понимания (Blessing of Comprehension)</a></td><td>Энциклопедические</td></tr><tr><td>Жизнь</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#оживляющий-ритуал-revitalizing-ritual" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Оживляющий Ритуал (Revitalizing Ritual)</a></td><td>Исследовательские</td></tr><tr><td>Любовь</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#благословение-сострадания-blessing-of-compassion" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Благословение Сострадания (Blessing of Compassion)</a></td><td>Межличностные</td></tr><tr><td>Природа</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#верный-друг-faithful-friend" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Верный Друг (Faithful Friend)</a></td><td>Исследовательские</td></tr><tr><td>Защита</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#защитный-круг-protective-circle" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Защитный Круг (Protective Circle)</a></td><td>Исследовательские</td></tr><tr><td>Шторм</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#благословение-благоприятной-погоды-blessing-of-fortunate-weather" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Благословение Благоприятной Погоды (Blessing of Fortunate Weather)</a></td><td>Исследовательские</td></tr><tr><td>Солнце</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#внутренний-свет-inner-light" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Внутренний Свет (Inner Light)</a></td><td>Энциклопедические</td></tr><tr><td>Обман</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#вдохновляющий-обман-inspired-deception" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Вдохновляющий Обман (Inspired Deception)</a></td><td>Скрытные</td></tr><tr><td>Война</td><td><a href="../Классы-(Classes)/Проводник-(Conduit)#освящённое-оружие-sanctified-weapon" class="internal alias" data-slug="Классы-(Classes)/Проводник-(Conduit)">Освящённое Оружие (Sanctified Weapon)</a></td><td>Исследовательские</td></tr></tbody></table></div>
+<h5 id="благословение-сострадания-blessing-of-compassion">Благословение Сострадания (Blessing of Compassion)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#благословение-сострадания-blessing-of-compassion" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы излучаете магическое присутствие, которое успокаивает тех, кто готов вступить с вами в социальное взаимодействие. Вы получаете Преимущество на любую проверку, сделанную для помощи другому существу в проверке.</p>
+<p>Кроме того, когда вы присутствуете в начале переговоров, один НИП по вашему выбору увеличивает своё терпение на 1 (до максимума 5), и первая проверка, сделанная для влияния на него, получает Преимущество.</p>
+<h5 id="благословение-понимания-blessing-of-comprehension">Благословение Понимания (Blessing of Comprehension)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#благословение-понимания-blessing-of-comprehension" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы можете интерпретировать диаграммы и схемы, даже если не понимаете язык, связанный с ними. Для целей понимания исходных материалов любого ремесленного или исследовательского проекта вы считаете себя свободно владеющим всеми языками.</p>
+<h5 id="благословение-благоприятной-погоды-blessing-of-fortunate-weather">Благословение Благоприятной Погоды (Blessing of Fortunate Weather)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#благословение-благоприятной-погоды-blessing-of-fortunate-weather" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Каждый раз, когда вы заканчиваете отдых, вы можете выбрать погодные условия в радиусе 100 квадратов. До следующего отдыха выбранные вами погодные условия следуют за вами в любых обычных открытых локациях. Выберите один тип погоды, который даёт бонус вам и вашим союзникам:</p>
+<p><strong>Ясно:</strong> Вы и ваши союзники получаете Преимущество на проверки, использующие навыки Поиск или Навигация.</p>
+<p><strong>Туманно:</strong> Вы и ваши союзники получаете Преимущество на проверки, использующие навык Сокрытие.</p>
+<p><strong>Пасмурно:</strong> Вы и ваши союзники получаете Преимущество на проверки, использующие навык Стойкость.</p>
+<p><strong>Осадки:</strong> Когда земля грязная или снежная, вы и ваши союзники получаете Преимущество на проверки, использующие навык Выслеживание.</p>
+<p>Если вы находитесь в одной области с существом, использующим эту или похожую особенность, выбравшим другой эффект погоды, эффекты взаимно нейтрализуют друг друга там, где области пересекаются.</p>
+<h5 id="верный-друг-faithful-friend">Верный Друг (Faithful Friend)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#верный-друг-faithful-friend" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы получаете следующую способность.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Верный Друг (Faithful Friend)</span></span>
+<span data-line><span>flavor: Дух животного притягивается к вам, объединяя с вами свои органы чувств и верно служа вам.</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: На себя</span></span>
+<span data-line><span>target: На себя</span></span>
+<span data-line><span>keywords: Магия</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Вы вызываете духа, который принимает облик любого животного, которое вы видели. Бестелесное животное имеет скорость 5 и может летать, но не может физически взаимодействовать с миром. Пока вы находитесь в пределах 10 квадратов от духа, вы автоматически ощущаете всё, что могло бы ощущать это животное, помимо ваших собственных ощущений. Вы можете рассеять духа в любое время (действие не требуется). Если дух получает любой урон, он рассевается, и вы получаете 1d10 психического урона, который нельзя уменьшить никаким образом.</span></span></code></pre></figure>
+<h5 id="шёпот-могил-grave-speech">Шёпот Могил (Grave Speech)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#шёпот-могил-grave-speech" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы получаете следующую способность.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Шёпот Могил (Grave Speech)</span></span>
+<span data-line><span>flavor: Вы общаетесь с оставшейся душой недавно умершего существа.</span></span>
+<span data-line><span>type: Манёвр</span></span>
+<span data-line><span>distance: Ближнее 1</span></span>
+<span data-line><span>target: Одно мёртвое существо</span></span>
+<span data-line><span>keywords: Магия</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Вы можете говорить с целью, если это существо умерло в течение последних 24 часов и способно говорить на языке, который вы знаете, даже если оно осталось лишь головой. Цель относится к вам так же, как она бы относилась при жизни, и вам, возможно, придётся совершать проверки, чтобы повлиять на неё и убедить говорить с вами. Травма смерти может сделать воспоминания существа о событии размытыми, но иначе цель знает всё, что знала при жизни. Через 1 минуту эффект заканчивается. Вы не можете использовать эту способность на одном и том же существе дважды.</span></span></code></pre></figure>
+<h5 id="руки-создателя-hands-of-the-maker">Руки Создателя (Hands of the Maker)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#руки-создателя-hands-of-the-maker" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы получаете следующую способность.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Руки Создателя (Hands of the Maker)</span></span>
+<span data-line><span>flavor: Вы создаёте предметы силой своего разума.</span></span>
+<span data-line><span>type: Манёвр</span></span>
+<span data-line><span>distance: На себя</span></span>
+<span data-line><span>target: На себя</span></span>
+<span data-line><span>keywords: Магия</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Вы создаёте обычный предмет размером 1S или меньше. Вы можете поддерживать количество созданных таким образом предметов, равное вашему Присутствию. Вы можете разрушить созданный предмет силой мысли, независимо от расстояния до него (действие не требуется).</span></span></code></pre></figure>
+<h5 id="внутренний-свет-inner-light">Внутренний Свет (Inner Light)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#внутренний-свет-inner-light" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Каждый раз, когда вы завершаете <strong>отдых</strong>, вы можете выбрать себя или одного союзника, который также завершает <strong>отдых</strong>, чтобы получить эффект божественного ритуала. Вы помещаете луч утреннего света в душу выбранного персонажа, давая им бонус +1 к <strong>спасброскам</strong>, который действует до следующего завершения вашего <strong>отдыха</strong>.</p>
+<h5 id="вдохновляющий-обман-inspired-deception">Вдохновляющий Обман (Inspired Deception)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#вдохновляющий-обман-inspired-deception" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Боги благоволят вашему воровству с помощью <strong>магии</strong>. Когда вы совершаете <strong>проверку</strong>, использующую навык из группы <strong>Скрытные навыки</strong>, вы можете использовать <strong>Присутствие</strong> вместо другой характеристики.</p>
+<h5 id="видения-оракула-oracular-visions">Видения Оракула (Oracular Visions)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#видения-оракула-oracular-visions" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вашe божество награждает вас смутными видениями будущего. Каждый раз, когда вы зарабатываете 1 или более <strong>Побед</strong>, вы получаете равное количество <strong>очков судьбы</strong>. Когда вы или существо в пределах 10 клеток совершаете проверку, вы можете потратить 1 <strong>очко судьбы</strong>, чтобы воспользоваться видением исхода, давая существу <strong>Преимущество</strong> на проверку. Все оставшиеся <strong>очки судьбы</strong> теряются после завершения отдыха.</p>
+<h5 id="защитный-круг-protective-circle">Защитный Круг (Protective Circle)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#защитный-круг-protective-circle" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Вы можете потратить 10 непрерывных минут, чтобы создать защищающий круг на земле, достаточно большой для одного существа размера 1. Круг действует 24 часа, до создания нового или пока вы его не отмените (действие не требуется). Только существа, указанные вами при создании, могут входить и выходить из <strong>области</strong>. Находясь в круге, существо не может быть целью <strong>ударов</strong>.</p>
+<h5 id="оживляющий-ритуал-revitalizing-ritual">Оживляющий Ритуал (Revitalizing Ritual)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#оживляющий-ритуал-revitalizing-ritual" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Каждый раз, когда вы завершаете <strong>отдых</strong>, вы можете выбрать себя или одного союзника, который также завершает <strong>отдых</strong>, чтобы получить эффект божественного ритуала. Выбранный персонаж получает бонус к количеству <strong>восстановлений</strong> равный вашему уровню, который действует до следующего завершения <strong>отдыха</strong>.</p>
+<h5 id="освящённое-оружие-sanctified-weapon">Освящённое Оружие (Sanctified Weapon)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#освящённое-оружие-sanctified-weapon" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>В качестве действия <strong>отдыха</strong> вы можете освятить оружие. Любое существо, использующее это оружие, получает бонус +1 к <strong>урону с способностей</strong>, использующих это оружие. Этот эффект действует до следующего завершения <strong>отдыха</strong>.</p>
+<h3 id="целительная-благодать-healing-grace">Целительная Благодать (Healing Grace)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#целительная-благодать-healing-grace" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Вы получаете следующую способность, которую можете использовать в свой ход.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Целительная Благодать (Healing Grace)</span></span>
+<span data-line><span>flavor: Ваша божественная энергия восстанавливает праведных.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Манёвр</span></span>
+<span data-line><span>type: Манёвр</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Вы или один союзник</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Цель может потратить Восстановление.</span></span>
+<span data-line><span>- Spend 1+ Почтения: За каждое потраченное Почтение выберите одно из следующих улучшений</span></span>
+<span data-line><span>- 1.Вы можете выбрать в качестве цели ещё одного союзника в пределах дистанции.</span></span>
+<span data-line><span>- 2.Вы можете прекратить один эффект на цели, который завершается спасброском или в конце её хода.</span></span>
+<span data-line><span>- 3.Цель может встать, если она повалена.</span></span>
+<span data-line><span>- 4.Цель может потратить ещё одно Восстановление.</span></span></code></pre></figure>
+<h3 id="луч-ярости-ray-of-wrath">Луч Ярости (Ray of Wrath)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#луч-ярости-ray-of-wrath" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Вы получаете следующую способность, которая может быть использована как бесплатная дальняя атака.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Луч Ярости (Ray of Wrath)</span></span>
+<span data-line><span>flavor: Вы обрушиваете взрыв святого света на врага.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 2 + Интуиция урон</span></span>
+<span data-line><span>  12-16: 4 + Интуиция урон</span></span>
+<span data-line><span>  17+: 6 + Интуиция урон</span></span>
+<span data-line><span>- Effect: Эта способность может наносить святой урон.</span></span></code></pre></figure>
+<h3 id="реакция">Реакция<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#реакция" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Выберите одну из следующих <strong>Реакций</strong>. (<em>Быстрая сборка:</em> Слово Наставления - Word of Guidance.)</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Слово Наставления (Word of Guidance)</span></span>
+<span data-line><span>flavor: Вы наполняете атакующего союзника божественной энергией.</span></span>
+<span data-line><span>keywords: Магия, Дальнее</span></span>
+<span data-line><span>type: Реакция</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Один союзник</span></span>
+<span data-line><span>trigger: Цель совершает бросок способности для способности, наносящей урон.</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Бросок Могущества получает Преимущество.</span></span>
+<span data-line><span>- Spend 1 Почтение: Бросок Могущества получает двойное Преимущество.</span></span>
+<span data-line> </span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Слово Приговора (Word of Judgment)</span></span>
+<span data-line><span>flavor: Ваше святое слово ослабляет силу атакующего врага.</span></span>
+<span data-line><span>keywords: Магия, Дальнее</span></span>
+<span data-line><span>type: Реакция</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Один союзник</span></span>
+<span data-line><span>trigger: Цель должна получить урон от способности, использующей Бросок Могущества.</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Бросок Могущества получает Помеху против цели.</span></span>
+<span data-line><span>- Spend 1 Почтение: Бросок Могущества получает двойную Помеху против цели.</span></span>
+<span data-line> </span></code></pre></figure>
+<h3 id="молитва">Молитва<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Ваш бог отвечает на молитву, даруя улучшения телу и разуму. Выберите одну из следующих <strong>Молитв</strong>. Вы можете сменить молитву вместе со своим <strong>Покровом</strong> (см. <em>Оберег Проводника</em> ниже), вознеся молитву вашему богу во время <strong>Отдыха</strong>. (<em>Быстрая сборка:</em> Молитва Дальности -  Prayer of Distance.)</p>
+<h4 id="молитва-разрушения-prayer-of-destruction">Молитва Разрушения (Prayer of Destruction)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва-разрушения-prayer-of-destruction" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш бог наполняет ваше существо яростью. Вы получаете бонус +1 к итоговому на броске урону магическими способностями.</p>
+<h4 id="молитва-дальности-prayer-of-distance">Молитва Дальности (Prayer of Distance)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва-дальности-prayer-of-distance" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш бог благословляет вас способностью распространять вашу божественную магию дальше. Вы получаете бонус +2 к дистанции ваших магических дальних способностей.</p>
+<h4 id="молитва-солдатского-мастерства-prayer-of-soldiers-skill">Молитва Солдатского Мастерства (Prayer of Soldier’s Skill)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва-солдатского-мастерства-prayer-of-soldiers-skill" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш бог даёт вашему разуму подготовку солдата. Вы можете эффективно носить лёгкую броню и владеть лёгким оружием, даже если у вас нет комплекта. Пока вы носите лёгкую броню, вы получаете бонус +3 к <strong>Выносливости</strong>, и этот бонус увеличивается на 3 на 4-м, 7-м и 10-м уровнях. Пока вы владеете лёгким оружием, вы получаете бонус +1 к урону оружейными способностями, включая <strong>бесплатные удары</strong>. Вы можете использовать сокровища лёгкой брони и лёгкого оружия.</p>
+<p>Если у вас есть комплект, вы не можете взять это благословение.</p>
+<h4 id="молитва-скорости-prayer-of-speed">Молитва Скорости (Prayer of Speed)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва-скорости-prayer-of-speed" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш бог благословляет вашу плоть и наполняет её божественной быстротой. Вы получаете бонус +1 к скорости и к дистанции <strong>Сдвига</strong>, когда совершаете <strong>Отступление</strong>.</p>
+<h4 id="молитва-стали-prayer-of-steel">Молитва Стали (Prayer of Steel)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва-стали-prayer-of-steel" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш бог наполняет ваше тело светом творения, делая вас труднее ранить и сдвинуть. Вы получаете бонус +6 к <strong>Выносливости</strong>, и этот бонус увеличивается на 6 на 4-м, 7-м и 10-м уровнях. Кроме того, вы получаете бонус +1 к устойчивости (stability).</p>
+<h3 id="оберег-проводника">Оберег Проводника<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#оберег-проводника" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Ваш бог дарует вам <strong>Покров</strong>, который защищает вас от неверных. Выберите один из следующих <strong>Покровов</strong>. Вы можете сменить свой <strong>Покров</strong> вместе с <strong>Молитвой</strong> (см. выше) во время <strong>Отдыха</strong>, вознеся молитву вашему богу. (<em>Быстрая сборка:</em> Оберег Оплота - Bastion Ward.)</p>
+<h4 id="оберег-оплота-bastion-ward">Оберег Оплота (Bastion Ward)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#оберег-оплота-bastion-ward" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Ваш бог дарует вам святой облик, защищающий вас всегда. Вы получаете бонус +1 к <strong>спасброскам</strong>.</p>
+<h4 id="оберег-быстроты-quickness-ward">Оберег Быстроты (Quickness Ward)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#оберег-быстроты-quickness-ward" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Боги наделяют вас божественной стремительностью. Каждый раз, когда соседнее существо наносит вам урон, вы можете <strong>сдвинуться</strong> на количество клеток, равное вашему <strong>показателю Интуиции</strong>, после получения урона.</p>
+<h4 id="оберег-святилища">Оберег Святилища<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#оберег-святилища" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>В ответ на агрессию врага ваш бог оберегает вас. Каждый раз, когда другое существо наносит вам урон, оно не может выбрать вас целью <strong>Удара</strong>, пока вы не нанесёте урон ему или его союзнику, либо до конца его следующего хода.</p>
+<h4 id="оберег-духов">Оберег Духов<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#оберег-духов" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Невидимые духи окружают вас, если вы получили урон. Каждый раз, когда соседнее существо наносит вам урон, оно получает <strong>урон порчей</strong>, равный вашему <strong>показателю Интуиции</strong>.</p>
+<h3 id="способности-проводника">Способности Проводника<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#способности-проводника" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Ваша подготовка и вера позволяют вам специализироваться на магии, которая усиливает союзников, ослабляет врагов и помогает вам сражаться бок о бок с друзьями.</p>
+<h4 id="знаковые-способности">Знаковые способности<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#знаковые-способности" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Выберите две <strong>Знаковые способности</strong> из приведённых ниже. Знаковые способности можно использовать по желанию. (<em>Быстрая сборка:</em> Благословенный Свет - Blessed Light, Сокрушающее Проклятие - Staggering Curse.)</p>
+<h5 id="благословенный-свет-blessed-light">Благословенный Свет (Blessed Light)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#благословенный-свет-blessed-light" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Благословенный Свет (Blessed Light)</span></span>
+<span data-line><span>flavor: Пылающее сияние обрушивается на врага, передавая часть его энергии союзнику.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция святой урон</span></span>
+<span data-line><span>  12-16: 5 + Интуиция святой урон</span></span>
+<span data-line><span>  17+: 8 + Интуиция святой урон</span></span>
+<span data-line><span>- Effect: Один союзник в пределах дистанции получает количество Всплесков, равное рангу исхода вашего Броска Могущества.</span></span></code></pre></figure>
+<h5 id="истощение-drain">Истощение (Drain)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#истощение-drain" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Истощение (Drain)</span></span>
+<span data-line><span>flavor: Вы высасываете энергию из цели, чтобы восполнить силы себе или союзнику.</span></span>
+<span data-line><span>keywords: Магия, Ближнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Ближнее 1</span></span>
+<span data-line><span>target: Одно существо</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 2 + Интуиция урон порчей</span></span>
+<span data-line><span>  12-16: 5 + Интуиция урон порчей</span></span>
+<span data-line><span>  17+: 7 + Интуиция урон порчей</span></span>
+<span data-line><span>- Effect: Вы или один союзник в пределах дистанции может потратить Восстановление.</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="священный-хлыст-holy-lash">Священный Хлыст (Holy Lash)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#священный-хлыст-holy-lash" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Священный Хлыст (Holy Lash)</span></span>
+<span data-line><span>flavor: Щупальце божественной энергии вырывается, чтобы притянуть врага.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция святой урон; Притянуть 2 по вертикали</span></span>
+<span data-line><span>  12-16: 5 + Интуиция святой урон; Притянуть 3 по вертикали</span></span>
+<span data-line><span>  17+: 8 + Интуиция святой урон; Притянуть 4 по вертикали</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="падение-света-lightfall">Падение Света (Lightfall)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#падение-света-lightfall" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Падение Света (Lightfall)</span></span>
+<span data-line><span>flavor: Дождь святого света очищает врагов и меняет позиции союзников.</span></span>
+<span data-line><span>keywords: Магия, Область</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Всплеск 2 (Burst 2)</span></span>
+<span data-line><span>target: Каждый враг в области</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 2 святой урон</span></span>
+<span data-line><span>  12-16: 3 святой урон</span></span>
+<span data-line><span>  17+: 5 святой урон</span></span>
+<span data-line><span>- Effect: Вы можете телепортировать себя и каждого союзника в области в незанятые клетки в области.</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="жертвенный-дар-sacrificial-offer">Жертвенный Дар (Sacrificial Offer)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#жертвенный-дар-sacrificial-offer" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Жертвенный Дар (Sacrificial Offer)</span></span>
+<span data-line><span>flavor: Божественная магия терзает врага и защищает союзника рядом.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 2 + Интуиция урон порчей</span></span>
+<span data-line><span>  12-16: 4 + Интуиция урон порчей</span></span>
+<span data-line><span>  17+: 6 + Интуиция урон порчей</span></span>
+<span data-line><span>- Effect: Выберите себя или одного союзника в пределах дистанции. Эта цель может наложить Помеху на один Бросок Могущества против неё до конца её следующего хода.</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="сокрушающее-проклятие-staggering-curse">Сокрушающее Проклятие (Staggering Curse)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#сокрушающее-проклятие-staggering-curse" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Сокрушающее Проклятие (Staggering Curse)</span></span>
+<span data-line><span>flavor: Взрыв приговора дезориентирует врага.</span></span>
+<span data-line><span>keywords: Магия, Ближнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Ближнее 1</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция святой урон; Сдвинуть (slide) 1</span></span>
+<span data-line><span>  12-16: 5 + Интуиция святой урон; Сдвинуть (slide) 2</span></span>
+<span data-line><span>  17+: 8 + Интуиция святой урон; Сдвинуть (slide) 3</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="молитва-воина-warriors-prayer">Молитва Воина (Warrior’s Prayer)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молитва-воина-warriors-prayer" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Молитва Воина (Warrior's Prayer)</span></span>
+<span data-line><span>flavor: Ваша быстрая молитва наполняет союзника божественной силой в бою.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция святой урон</span></span>
+<span data-line><span>  12-16: 6 + Интуиция святой урон</span></span>
+<span data-line><span>  17+: 9 + Интуиция святой урон</span></span>
+<span data-line><span>- Effect: Вы или один союзник в пределах дистанции получает временную Выносливость, равную вашему показателю Интуиции.</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="иссушение-wither">Иссушение (Wither)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#иссушение-wither" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Иссушение (Wither)</span></span>
+<span data-line><span>flavor: Заряд святой энергии выкачивает жизнь из врага.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция урон порчей; если Присутствие &lt; Слабое, цель получает Помеху на следующий Бросок Могущества</span></span>
+<span data-line><span>  12-16: 5 + Интуиция урон порчей; если Присутствие &lt; Среднее, цель получает Помеху на следующий Бросок Могущества</span></span>
+<span data-line><span>  17+: 8 + Интуиция урон порчей; если Присутствие &lt; Сильное, цель получает Помеху на следующий Бросок Могущества</span></span>
+<span data-line> </span></code></pre></figure>
+<h3 id="героические-способности">Героические способности<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#героические-способности" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Вы используете ряд <strong>Героических способностей</strong>, все из которых требуют <strong>Почтения</strong> для активации.</p>
+<h4 id="способности-стоимостью-3-почтения">Способности стоимостью 3 почтения<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#способности-стоимостью-3-почтения" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Выберите одну героическую способность из следующих вариантов. Каждая из них стоит 3 <strong>почтения</strong>. (<em>Быстрая сборка:</em> Насилие Не Поможет Тебе - Violence Will Not Aid Thee.)</p>
+<h5 id="призыв-грома-call-the-thunder-down-3-piety">Призыв Грома (Call the Thunder Down) (3 Piety)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#призыв-грома-call-the-thunder-down-3-piety" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Призыв Грома (Call the Thunder Down)</span></span>
+<span data-line><span>cost: 3 почтения</span></span>
+<span data-line><span>flavor: Вы просите святого о грозе, и ваша молитва услышана.</span></span>
+<span data-line><span>keywords: Магия, Область, Дальнее</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Куб 3 в пределах 10</span></span>
+<span data-line><span>target: Каждый враг в области</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 2 звуковой урон; Толкнуть 1</span></span>
+<span data-line><span>  12-16: 3 звуковой урон; Толкнуть 2</span></span>
+<span data-line><span>  17+: 5 звуковой урон; Толкнуть 3</span></span>
+<span data-line><span>- Effect: Вы можете толкнуть каждого согласного союзника в области на такое же расстояние, игнорируя устойчивость.</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="источник-гнева-font-of-wrath3-почтения">Источник Гнева (Font of Wrath) (3 почтения)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#источник-гнева-font-of-wrath3-почтения" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Источник Гнева (Font of Wrath)</span></span>
+<span data-line><span>cost: 3 почтения</span></span>
+<span data-line><span>flavor: На поле боя появляется сияющий столб света, поражающий врагов поблизости.</span></span>
+<span data-line><span>keywords: Магия, Дальнее</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Особое</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Вы призываете духа размера 2, которого нельзя повредить, он появляется в незанятой клетке в пределах дистанции. Дух существует до конца вашего следующего хода. Вы и ваши союзники можете проходить через клетку духа, враги — нет. Любой враг, который впервые за раунд перемещается в пределах 2 клеток от духа или начинает там свой ход, получает святой урон, равный вашему показателю Интуиции.</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="молот-приговора-judgments-hammer3-почтения">Молот Приговора (Judgment’s Hammer) (3 почтения)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#молот-приговора-judgments-hammer3-почтения" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Молот Приговора (Judgment's Hammer)</span></span>
+<span data-line><span>cost: 3 почтения</span></span>
+<span data-line><span>flavor: Ваша божественная ярость — молот, обрушивающийся на нечестивых.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция святой урон; Ловкость &lt; Слабое — повалено</span></span>
+<span data-line><span>  12-16: 6 + Интуиция святой урон; Ловкость &lt; Среднee — повалено</span></span>
+<span data-line><span>  17+: 9 + Интуиция святой урон; Ловкость &lt; Сильное — повалено и не может встать (спасбросок завершает)</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="насилие-не-поможет-тебе-violence-will-not-aid-thee3-почтения">Насилие Не Поможет Тебе (Violence Will Not Aid Thee) (3 почтения)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#насилие-не-поможет-тебе-violence-will-not-aid-thee3-почтения" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Насилие Не Поможет Тебе (Violence Will Not Aid Thee)</span></span>
+<span data-line><span>cost: 3 почтения</span></span>
+<span data-line><span>flavor: После пары святых молний враг подумает дважды, прежде чем атаковать.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция урон молнией</span></span>
+<span data-line><span>  12-16: 6 + Интуиция урон молнией</span></span>
+<span data-line><span>  17+: 9 + Интуиция урон молнией</span></span>
+<span data-line><span>- Effect: В первый раз за ход, когда цель наносит урон другому существу, цель этой способности получает 1d10 урона молнией (спасбросок завершает).</span></span>
+<span data-line> </span></code></pre></figure>
+<h4 id="способности-стоимостью-5-почтений">Способности стоимостью 5 почтений<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#способности-стоимостью-5-почтений" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Выберите одну героическую способность из следующих вариантов. Каждая из них стоит 5 <strong>почтений</strong>. (<em>Быстрая сборка:</em> Проклятие Террора - Curse of Terror.)</p>
+<h5 id="проклятие-порчи-corruptions-curse5-почтений">Проклятие Порчи (Corruption’s Curse) (5 почтений)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#проклятие-порчи-corruptions-curse5-почтений" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Проклятие Порчи (Corruption's Curse)</span></span>
+<span data-line><span>cost: 5 почтений</span></span>
+<span data-line><span>flavor: Проклятый вами враг получает больше урона от ваших союзников.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо или объект</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 3 + Интуиция урон порчей; Сила &lt; Слабое — слабость к урону 5 (спасбросок завершает)</span></span>
+<span data-line><span>  12-16: 6 + Интуиция урон порчей; Сила &lt; Среднее — слабость к урону 5 (спасбросок завершает)</span></span>
+<span data-line><span>  17+: 9 + Интуиция урон порчей; Сила &lt; Сильное — слабость к урону 5 (спасбросок завершает)</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="проклятие-террора-curse-of-terror5-почтений">Проклятие Террора (Curse of Terror) (5 почтений)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#проклятие-террора-curse-of-terror5-почтений" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Проклятие Террора (Curse of Terror)</span></span>
+<span data-line><span>cost: 5 почтений</span></span>
+<span data-line><span>flavor: Страх божественного наказания охватывает врага.</span></span>
+<span data-line><span>keywords: Магия, Дальнее, Удар</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Одно существо</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: 6 + Интуиция святой урон; Интуиция &lt; Слабое — напугано (спасбросок завершает)</span></span>
+<span data-line><span>  12-16: 9 + Интуиция святой урон; Интуиция &lt; Среднее — напугано (спасбросок завершает)</span></span>
+<span data-line><span>  17+: 13 + Интуиция святой урон; Интуиция &lt; Сильное — напугано (спасбросок завершает)</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="вера--наша-броня-faith-is-our-armor5-почтений">Вера — наша броня (Faith Is Our Armor) (5 почтений)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#вера--наша-броня-faith-is-our-armor5-почтений" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Вера — наша броня (Faith Is Our Armor)</span></span>
+<span data-line><span>cost: 5 почтений</span></span>
+<span data-line><span>flavor: Броня героев сияет золотым светом, даруя божественную защиту.</span></span>
+<span data-line><span>keywords: Магия, Дальнее</span></span>
+<span data-line><span>type: Манёвр</span></span>
+<span data-line><span>distance: Дальнее 10</span></span>
+<span data-line><span>target: Четыре союзника</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Вы можете выбрать себя вместо одного союзника в качестве цели.</span></span>
+<span data-line><span>- roll: Бросок Могущества + Интуиция</span></span>
+<span data-line><span>  11 or lower: Цель получает 5 временной Выносливости</span></span>
+<span data-line><span>  12-16: Цель получает 10 временной Выносливости</span></span>
+<span data-line><span>  17+: Цель получает 15 временной Выносливости</span></span>
+<span data-line> </span></code></pre></figure>
+<h5 id="проповедь-благодати-sermon-of-grace5-почтений">Проповедь Благодати (Sermon of Grace) (5 почтений)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#проповедь-благодати-sermon-of-grace5-почтений" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ds-ab" data-theme="github-light github-dark"><code data-language="ds-ab" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>name: Проповедь Благодати (Sermon of Grace)</span></span>
+<span data-line><span>cost: 5 почтений</span></span>
+<span data-line><span>flavor: Вы вдохновляете союзников рассказами о великих деяниях вашего святого.</span></span>
+<span data-line><span>keywords: Магия, Область</span></span>
+<span data-line><span>type: Основное действие</span></span>
+<span data-line><span>distance: Всплеск 4 (Burst 4)</span></span>
+<span data-line><span>target: Каждый союзник в области</span></span>
+<span data-line><span>effects:</span></span>
+<span data-line><span>- Effect: Каждая цель может потратить Восстановление. Дополнительно, каждая цель может использовать бесплатную Реакцию, чтобы завершить один эффект, который завершается спасброском или в конце её хода, или встать, если повалена.</span></span>
+<span data-line> </span></code></pre></figure></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-5" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#основы" data-for="основы">Основы</a></li><li class="depth-1"><a href="#таблица-развития-проводника" data-for="таблица-развития-проводника">Таблица развития Проводника</a></li><li class="depth-0"><a href="#особенности-1-го-уровня" data-for="особенности-1-го-уровня">Особенности 1-го уровня</a></li><li class="depth-1"><a href="#божество-и-домены" data-for="божество-и-домены">Божество и Домены</a></li><li class="depth-1"><a href="#почтение-piety" data-for="почтение-piety">Почтение (Piety)</a></li><li class="depth-1"><a href="#особенности-домена-проводника-1-го-уровня" data-for="особенности-домена-проводника-1-го-уровня">Особенности домена Проводника 1-го уровня</a></li><li class="depth-1"><a href="#целительная-благодать-healing-grace" data-for="целительная-благодать-healing-grace">Целительная Благодать (Healing Grace)</a></li><li class="depth-1"><a href="#луч-ярости-ray-of-wrath" data-for="луч-ярости-ray-of-wrath">Луч Ярости (Ray of Wrath)</a></li><li class="depth-1"><a href="#реакция" data-for="реакция">Реакция</a></li><li class="depth-1"><a href="#молитва" data-for="молитва">Молитва</a></li><li class="depth-1"><a href="#оберег-проводника" data-for="оберег-проводника">Оберег Проводника</a></li><li class="depth-1"><a href="#способности-проводника" data-for="способности-проводника">Способности Проводника</a></li><li class="depth-1"><a href="#героические-способности" data-for="героические-способности">Героические способности</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="../Классы-(Classes)/Проводник-(Conduit)" class="internal">Проводник (Conduit)</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.1</a> © 2025</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module">function f(i,e){if(!i)return;function r(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function t(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}i?.addEventListener("click",r),window.addCleanup(()=>i?.removeEventListener("click",r)),document.addEventListener("keydown",t),window.addCleanup(()=>document.removeEventListener("keydown",t))}function y(i){for(;i.firstChild;)i.removeChild(i.firstChild)}var h=class{constructor(e,r){this.container=e;this.content=r;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),r=this.onMouseMove.bind(this),t=this.onMouseUp.bind(this),o=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",r),document.addEventListener("mouseup",t),window.addEventListener("resize",o),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",r),()=>document.removeEventListener("mouseup",t),()=>window.removeEventListener("resize",o))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let r=this.createButton("+",()=>this.zoom(.1)),t=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(t),e.appendChild(o),e.appendChild(r),this.container.appendChild(e)}createButton(e,r){let t=document.createElement("button");return t.textContent=e,t.className="mermaid-control-button",t.addEventListener("click",r),window.addCleanup(()=>t.removeEventListener("click",r)),t}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}zoom(e){let r=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),t=this.content.getBoundingClientRect(),o=t.width/2,n=t.height/2,c=r-this.scale;this.currentPan.x-=o*c,this.currentPan.y-=n*c,this.scale=r,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){this.scale=1;let e=this.content.querySelector("svg");this.currentPan={x:e.getBoundingClientRect().width/2,y:e.getBoundingClientRect().height/2},this.updateTransform()}},C=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],E;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;E||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let r=E.default,t=new WeakMap;for(let n of e)t.set(n,n.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let a=t.get(s);a&&(s.innerHTML=a)}let n=C.reduce((s,a)=>(s[a]=window.getComputedStyle(document.documentElement).getPropertyValue(a),s),{}),c=document.documentElement.getAttribute("saved-theme")==="dark";r.initialize({startOnLoad:!1,securityLevel:"loose",theme:c?"dark":"base",themeVariables:{fontFamily:n["--codeFont"],primaryColor:n["--light"],primaryTextColor:n["--darkgray"],primaryBorderColor:n["--tertiary"],lineColor:n["--darkgray"],secondaryColor:n["--secondary"],tertiaryColor:n["--tertiary"],clusterBkg:n["--light"],edgeLabelBackground:n["--highlight"]}}),await r.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let n=0;n<e.length;n++){let v=function(){let g=l.querySelector("#mermaid-space"),m=l.querySelector(".mermaid-content");if(!m)return;y(m);let w=c.querySelector("svg").cloneNode(!0);m.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new h(g,m)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},c=e[n],s=c.parentElement,a=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(a),L=a.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),f(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script type="application/javascript">
+        const socket = new WebSocket('ws://localhost:3001')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      </script><script src="../postscript.js" type="module"></script></html>
